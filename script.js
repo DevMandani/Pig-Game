@@ -1,5 +1,6 @@
 'use strict';
-
+const player0EL = document.querySelector('.player--0');
+const player1EL = document.querySelector('.player--1');
 const score0 = document.querySelector('#score--0');
 const score1 = document.querySelector('#score--1');
 
@@ -39,11 +40,16 @@ btnRoll.addEventListener('click',function(){
     if(dice !== 1){
         //Add dice to current score
         currentscore = currentscore+dice;
+        // we can select dynamically which player is active
+       document.querySelector(`#current--${activeplayer}`).textContent = currentscore;
 
-        document.querySelector('#current--0')
-        current0EL.textContent = currentscore;
+        
     }else{
-
+        document.querySelector(`#current--${activeplayer}`).textContent = 0;
+        currentscore=0;
+        activeplayer = activeplayer===0?1:0;
+        player0EL.classList.toggle('player--active'); //this method automatically add and remove the class
+        player1EL.classList.toggle('player--active');
     }
 })
 
